@@ -6,32 +6,31 @@
 #    By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 12:24:06 by pillesca          #+#    #+#              #
-#    Updated: 2024/05/03 12:48:34 by pillesca         ###   ########.fr        #
+#    Updated: 2024/05/03 18:35:48 by pillesca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFTSRC = libft.a
 LIBFTDIR = ./lib/libft
 
-SRC = main.c
+SRC = args_chk.c main.c
 
 OBJ = $(SRC:.c=.o)
 
-NAME = push_swap.out
+NAME = push_swap
 
 AR = ar rcs
 RM = rm -f
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+all: makelib $(NAME)
 
 makelib:
 	make -C $(LIBFTDIR)
-	@mv $(LIBFTDIR)/$(LIBFTSRC) .
 
-$(NAME): makelib $(OBJ) 
-	$(CC) $(OBJ) $(CFLAGS) $(PRINTSRC) $(LIBFTSRC) -o $(NAME)
+$(NAME): $(OBJ) 
+	$(CC) $(OBJ) $(CFLAGS) $(LIBFTDIR)/$(LIBFTSRC) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -42,6 +41,8 @@ clean:
 	
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) $(LIBFTSRC)
+	make fclean -C $(LIBFTDIR)
+
+re: fclean all
 
 .PHONY: all, clean, fclean
