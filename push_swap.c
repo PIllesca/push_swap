@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:31:35 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 15:42:30 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:02:39 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_fill_stack(t_stack	*stack, int argc, char *argv[])
 		i++;
 	}
 	if (argc == 2)
-		free(args);
+		ft_free_str(args);
 }
 
 static void	ft_print_stack(t_stack	*stack)

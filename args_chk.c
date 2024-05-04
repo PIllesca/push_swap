@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:08:31 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 12:21:52 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:03:21 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_chk_repeat(long nb, char **args, int i)
 static void	ft_error(char **args, int argc)
 {
 	if (argc == 2)
-		free(args);
+		ft_free_str(args);
 	ft_error_exit();
 }
 
@@ -69,7 +69,7 @@ int	ft_chk_args(int argc, char *argv[])
 		i++;
 	}
 	if (argc == 2)
-		free(args);
+		ft_free_str(args);
 	if (i < 2)
 		ft_error_exit();
 	return (i);
