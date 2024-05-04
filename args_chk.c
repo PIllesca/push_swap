@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:08:31 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/03 19:06:44 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:21:52 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,62 +16,61 @@ static int	ft_chk_digit(char *str)
 {
 	if (*str == '-' || *str == '+')
 		str++;
-	else
+	while (*str)
 	{
-		while (*str)
-		{
-			if (ft_isdigit(*str))
-				str++;
-			else
-				return (-1);
-		}
+		if (ft_isdigit(*str))
+			str++;
+		else
+			return (-1);
 	}
 	return (0);
 }
 
-void	ft_error_exit(void)
+static int	ft_chk_repeat(long nb, char **args, int i)
 {
-	ft_putstr_fd("Error\n", 1);
-	exit(EXIT_FAILURE);
+	if (nb < -2147483648 || nb > 2147483647)
+		return (-1);
+	i++;
+	while (args[i])
+	{
+		if (ft_atol(args[i]) == nb)
+			return (-1);
+		i++;
+	}
+	return (0);
 }
 
-static void	ft_chk_string(char *str)
+static void	ft_error(char **args, int argc)
 {
-	while (*str)
-	{
-		if (*str == ' ' || *str == '-' || *str == '+')
-		{
-			str++;
-		}
-		else
-		{
-			if (ft_isdigit(*str))
-				str++;
-			else
-				ft_error_exit();
-		}
-	}
+	if (argc == 2)
+		free(args);
+	ft_error_exit();
 }
 
 int	ft_chk_args(int argc, char *argv[])
 {
-	int	i;
+	int		i;
+	long	tmp;
+	char	**args;
 
-	if (argc == 1)
-		exit(EXIT_SUCCESS);
-	else if (argc == 2)
-	{
-		ft_chk_string(argv[1]);
-	}
+	i = 0;
+	if (argc == 2)
+		args = ft_split(argv[1], ' ');
 	else
 	{
 		i = 1;
-		while (i < argc)
-		{
-			if (ft_chk_digit(argv[i]) == -1)
-				ft_error_exit();
-			i++;
-		}
+		args = argv;
 	}
-	return (0);
+	while (args[i])
+	{
+		tmp = ft_atol(args[i]);
+		if (ft_chk_digit(args[i]) < 0 || ft_chk_repeat(tmp, args, i) < 0)
+			ft_error(args, argc);
+		i++;
+	}
+	if (argc == 2)
+		free(args);
+	if (i < 2)
+		ft_error_exit();
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:17:20 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/03 18:28:18 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:27:50 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ void	ft_leaks(void)
 
 int	main(int argc, char *argv[])
 {
+	int	c;
+
 	atexit(ft_leaks);
-	ft_chk_args(argc, argv);
+	if (argc < 2)
+		exit(EXIT_FAILURE);
+	c = ft_chk_args(argc, argv) - 1;
+	if (argc == 2)
+		c++;
+	ft_putnbr_fd(c, 1);
 	exit(EXIT_SUCCESS);
 }
