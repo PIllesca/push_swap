@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:29:40 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 19:50:20 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/05 00:09:34 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_error_exit(void)
  * Checks if the stack is already sorted
  * 
  * @param[in] stack Stack to check
- * @returns 0 if sorted, -1 if not
+ * @returns 1 if sorted, 0 if not
 */
 int	ft_chk_sorted(t_stack *stack)
 {
@@ -87,8 +87,8 @@ int	ft_chk_sorted(t_stack *stack)
 	while (i--)
 	{
 		if (tmp > stack->array[i])
-			return (-1);
+			return (0);
 		tmp = stack->array[i];
 	}
-	return (i);
+	return (1);
 }

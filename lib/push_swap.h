@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:14:34 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 18:43:20 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 23:42:59 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,19 @@ void	ft_push_stack(t_stack *stack, int nb);
 int		ft_pop_stack(t_stack *stack);
 void	ft_swap_stack(t_stack *stack);
 void	ft_rotate_stack(t_stack *stack);
-void	ft_inv_rotation(t_stack *stack);
+void	ft_reverse_rotation(t_stack *stack);
 int		ft_chk_sorted(t_stack *stack);
+void	ft_sa(t_stack *stack_a);
+void	ft_sb(t_stack *stack_b);
+void	ft_ss(t_stack *stack_a, t_stack *stack_b);
+void	ft_pa(t_stack *stack_a, t_stack *stack_b);
+void	ft_pb(t_stack *stack_a, t_stack *stack_b);
+void	ft_ra(t_stack *stack_a);
+void	ft_rb(t_stack *stack_b);
+void	ft_rr(t_stack *stack_a, t_stack *stack_b);
+void	ft_rra(t_stack *stack_a);
+void	ft_rrb(t_stack *stack_b);
+void	ft_rrr(t_stack *stack_a, t_stack *stack_b);
 void	ft_push_swap(int argc, char *argv[], int c);
 
 #endif /*PUSH_SWAP_H*/

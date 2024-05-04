@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:08:31 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 17:23:02 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 22:36:33 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * Checks if the passed string contains only digits and + - signs
  * 
  * @param[in] str String to check
- * @returns 0 on valid string -1 on invalid string
+ * @returns 1 on valid string 0 on invalid string
 */
 static int	ft_chk_digit(char *str)
 {
@@ -27,9 +27,9 @@ static int	ft_chk_digit(char *str)
 		if (ft_isdigit(*str))
 			str++;
 		else
-			return (-1);
+			return (0);
 	}
-	return (0);
+	return (1);
 }
 
 /**
@@ -39,20 +39,20 @@ static int	ft_chk_digit(char *str)
  * @param[in] nb Original number to compare to
  * @param[in] args String array to check against
  * @param[in] i Index to where in the array to start checking
- * @returns 0 on valid non repeat number -1 on invalid input
+ * @returns 1 on valid non repeat number 0 on invalid input
 */
 static int	ft_chk_repeat(long nb, char **args, int i)
 {
 	if (nb < -2147483648 || nb > 2147483647)
-		return (-1);
+		return (0);
 	i++;
 	while (args[i])
 	{
 		if (ft_atol(args[i]) == nb)
-			return (-1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 /**
@@ -93,7 +93,7 @@ int	ft_chk_args(int argc, char *argv[])
 	while (args[i])
 	{
 		tmp = ft_atol(args[i]);
-		if (ft_chk_digit(args[i]) < 0 || ft_chk_repeat(tmp, args, i) < 0)
+		if (!ft_chk_digit(args[i]) || !ft_chk_repeat(tmp, args, i))
 			ft_error(args, argc);
 		i++;
 	}
