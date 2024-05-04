@@ -6,12 +6,18 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:29:40 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 11:37:24 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:12:24 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
+/**
+ * Same as atoi but for Long Integer
+ * 
+ * @param[in] str String to convert to long
+ * @returns Converted long
+*/
 long	ft_atol(const char *str)
 {
 	long	i;
@@ -38,6 +44,11 @@ long	ft_atol(const char *str)
 	return (nb * sign);
 }
 
+/**
+ * Frees the memory from a ft_split
+ * 
+ * @param[in] str String array to free
+*/
 void	ft_free_str(char **str)
 {
 	char	**temp;
@@ -51,6 +62,9 @@ void	ft_free_str(char **str)
 	free(str);
 }
 
+/**
+ * Controlled error exit
+*/
 void	ft_error_exit(void)
 {
 	ft_putstr_fd("Error\n", 1);

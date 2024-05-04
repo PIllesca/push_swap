@@ -6,12 +6,18 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:31:41 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 15:41:48 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:26:30 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
+/**
+ * Shifts all the numbers in the stack array by one position, and swaps the 
+ * first and last positions.
+ * 
+ * @param[in] stack Stack to rotate
+*/
 void	ft_rotate_stack(t_stack *stack)
 {
 	int	i;
@@ -30,6 +36,13 @@ void	ft_rotate_stack(t_stack *stack)
 	}
 }
 
+/**
+ * Similar to ft_rotate_stack shifts all the numbers in the stack array by one 
+ * position, and swaps the * first and last positions. Only in the opposite
+ * direction
+ * 
+ * @param[in] stack Stack to rotate
+*/
 void	ft_inv_rotation(t_stack *stack)
 {
 	int	i;
