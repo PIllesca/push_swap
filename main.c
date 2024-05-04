@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:17:20 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 12:27:50 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:43:35 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	main(int argc, char *argv[])
 	c = ft_chk_args(argc, argv) - 1;
 	if (argc == 2)
 		c++;
-	ft_putnbr_fd(c, 1);
+	ft_push_swap(argc, argv, c);
 	exit(EXIT_SUCCESS);
 }

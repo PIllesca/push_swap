@@ -6,14 +6,14 @@
 #    By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 12:24:06 by pillesca          #+#    #+#              #
-#    Updated: 2024/05/04 11:37:42 by pillesca         ###   ########.fr        #
+#    Updated: 2024/05/04 15:32:11 by pillesca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFTSRC = libft.a
 LIBFTDIR = ./lib/libft
 
-SRC = aux.c args_chk.c main.c
+SRC = aux.c aux_stack.c aux_rotate.c args_chk.c push_swap.c main.c
 
 OBJ = $(SRC:.c=.o)
 
