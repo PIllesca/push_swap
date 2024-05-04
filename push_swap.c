@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:31:35 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 17:36:23 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:42:57 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	ft_push_swap(int argc, char *argv[], int c)
 	stack_b = ft_create_stack(c);
 	ft_fill_stack(stack_a, argc, argv);
 	ft_print_stack(stack_a);
-	ft_rotate_stack(stack_a);
-	ft_print_stack(stack_a);
-	ft_inv_rotation(stack_a);
-	ft_print_stack(stack_a);
+	if (ft_chk_sorted(stack_a) == 0)
+		ft_putstr_fd("Is sorted.\n", 1);
+	else
+		ft_putstr_fd("Is sorted.\n", 1);
 	ft_destroy_stack(stack_a);
 	ft_destroy_stack(stack_b);
 }

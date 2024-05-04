@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:29:40 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 17:12:24 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:50:20 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,26 @@ void	ft_error_exit(void)
 {
 	ft_putstr_fd("Error\n", 1);
 	exit(EXIT_FAILURE);
+}
+
+/**
+ * Checks if the stack is already sorted
+ * 
+ * @param[in] stack Stack to check
+ * @returns 0 if sorted, -1 if not
+*/
+int	ft_chk_sorted(t_stack *stack)
+{
+	int	i;
+	int	tmp;
+
+	i = stack->size - 1;
+	tmp = stack->array[i];
+	while (i--)
+	{
+		if (tmp > stack->array[i])
+			return (-1);
+		tmp = stack->array[i];
+	}
+	return (i);
 }
