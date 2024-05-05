@@ -6,19 +6,11 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:17:20 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 17:37:35 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/05 00:19:23 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
-
-/**
- * Debug only, shows in terminal any memory leaks
-*/
-void	ft_leaks(void)
-{
-	system("leaks -q push_swap");
-}
 
 /**
  * Body of the executable

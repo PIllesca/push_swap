@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:14:34 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 23:42:59 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/05 01:11:41 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,10 @@ void	ft_rra(t_stack *stack_a);
 void	ft_rrb(t_stack *stack_b);
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b);
 void	ft_push_swap(int argc, char *argv[], int c);
+int		ft_find_min(t_stack *stack);
+int		ft_find_max(t_stack *stack);
+void	ft_sort_three(t_stack *stack);
+void	ft_leaks(void);
+void	ft_print_stacks(t_stack	*stack_a, t_stack *stack_b);
 
 #endif /*PUSH_SWAP_H*/
