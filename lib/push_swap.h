@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:14:34 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 01:11:41 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/05 13:16:58 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,19 @@ void	ft_rrr(t_stack *stack_a, t_stack *stack_b);
 void	ft_push_swap(int argc, char *argv[], int c);
 int		ft_find_min(t_stack *stack);
 int		ft_find_max(t_stack *stack);
+int		ft_find_index(t_stack *stack, int nb);
 void	ft_sort_three(t_stack *stack);
+int		ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b);
+int		ft_find_new_b(t_stack *stack_b, int nbr_push);
+int		ft_find_new_a(t_stack *stack_a, int nb);
+int		ft_case_rarb(t_stack *stack_a, t_stack *stack_b, int nb);
+int		ft_case_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb);
+int		ft_case_rrarb(t_stack *stack_a, t_stack *stack_b, int nb);
+int		ft_case_rarrb(t_stack *stack_a, t_stack *stack_b, int nb);
+int		ft_apply_rarb(t_stack *a, t_stack *b, int nb, char s);
+int		ft_apply_rrarrb(t_stack *a, t_stack *b, int nb, char s);
+int		ft_apply_rrarb(t_stack *a, t_stack *b, int nb, char s);
+int		ft_apply_rarrb(t_stack *a, t_stack *b, int nb, char s);
 void	ft_leaks(void);
 void	ft_print_stacks(t_stack	*stack_a, t_stack *stack_b);
 

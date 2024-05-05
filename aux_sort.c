@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 00:42:13 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 01:53:39 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:45:24 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,29 @@ int	ft_find_max(t_stack *stack)
 		i++;
 	}
 	return (tmp);
+}
+
+/**
+ * Finds nb number position in the stack
+ * 
+ * @param[in] stack Stack to search
+ * @param[in] nb Number to find
+ * @returns The index of the number nb
+*/
+int	ft_find_index(t_stack *stack, int nb)
+{
+	int	i;
+	int	j;
+
+	i = stack->size;
+	j = 0;
+	while (i--)
+	{
+		if (stack->array[i] == nb)
+			return (j);
+		j++;
+	}
+	return (j);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:31:35 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 01:55:21 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:07:14 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,70 @@ static void	ft_fill_stack(t_stack	*stack, int argc, char *argv[], int c)
 		ft_free_str(args);
 }
 
-void	ft_sort_b(t_stack *stack_a, t_stack *stack_b)
+/**
+ * Once we have a minimum and maximum as base we sort and push everything to 
+ * stack b until we have everything sorted in stack a or a has reached a size 
+ * of three
+ * 
+ * @param[in] stack_a Reference to Stack a
+ * @param[in] stack_b Reference to Stack b
+*/
+void	ft_push_sort(t_stack *a, t_stack *b)
 {
-	if (stack_a->size > 3 && !ft_chk_sorted(stack_a))
-		ft_pb(stack_a, stack_b);
-	if (stack_a->size > 3 && !ft_chk_sorted(stack_a))
-		ft_pb(stack_a, stack_b);
-	if (stack_a->size > 3 && !ft_chk_sorted(stack_a))
-		ft_pb(stack_a, stack_b);
-	if (!ft_chk_sorted(stack_a))
-		ft_sort_three(stack_a);
+	int	index;
+	int	moves;
+
+	while (a->size > 3 && !ft_chk_sorted(a))
+	{
+		index = a->size - 1;
+		moves = ft_best_ab_rotation(a, b);
+		while (moves >= 0)
+		{
+			if (moves == ft_case_rarb(a, b, a->array[index]))
+				moves = ft_apply_rarb(a, b, a->array[index], 'a');
+			else if (moves == ft_case_rrarrb(a, b, a->array[index]))
+				moves = ft_apply_rrarrb(a, b, a->array[index], 'a');
+			else if (moves == ft_case_rarrb(a, b, a->array[index]))
+				moves = ft_apply_rarrb(a, b, a->array[index], 'a');
+			else if (moves == ft_case_rrarb(a, b, a->array[index]))
+				moves = ft_apply_rrarb(a, b, a->array[index], 'a');
+			else
+				index--;
+		}
+	}
 }
 
+void	ft_pop_sort(t_stack *stack_a, t_stack *stack_b)
+{
+	ft_print_stacks(stack_a, stack_b);
+}
+
+/**
+ * Sorts the stacks, if stack a is unsorted and of size two we swap a. 
+ * Otherwise while stack a remains unsorted and bigger than size three we move 
+ * everything to b. The first two elements for a maximum and minimum and the 
+ * rest we move already sorted using those as a base. Once everything we need 
+ * to move is in b we check to see if we need to sort the last three elements
+ * 
+ * @param[in] stack_a Reference to Stack a
+ * @param[in] stack_b Reference to Stack b
+*/
 void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->size == 2)
 		ft_sa(stack_a);
 	else
 	{
-		ft_sort_b(stack_a, stack_b);
+		if (stack_a->size > 3 && !ft_chk_sorted(stack_a))
+			ft_pb(stack_a, stack_b);
+		if (stack_a->size > 3 && !ft_chk_sorted(stack_a))
+			ft_pb(stack_a, stack_b);
+		if (stack_a->size > 3 && !ft_chk_sorted(stack_a))
+			ft_push_sort(stack_a, stack_b);
+		if (!ft_chk_sorted(stack_a))
+			ft_sort_three(stack_a);
+		if (stack_b->size > 0)
+			ft_pop_sort(stack_a, stack_b);
 	}
 }
 
