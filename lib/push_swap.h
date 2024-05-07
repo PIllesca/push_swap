@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:14:34 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 13:16:58 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:48:33 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,36 @@ typedef struct s_stack
 	int	*array;
 	int	size;
 }	t_stack;
+
+typedef enum e_dest
+{
+	a_stack,
+	b_stack
+}	t_dest;
+
+typedef enum e_rot
+{
+	rarb,
+	rrarrb,
+	rrarb,
+	rarrb
+}	t_rot;
+
+/**
+ * Contains the information needed to push a number to another stack
+ * 
+ * @param destination Enum that points which stack to push to
+ * @param rotation Enum that selects with rotation to use before the push
+ * @param c	How many rotations it will take to prepare the stack for the push
+ * @param nb The number we will push to the other stack
+*/
+typedef struct s_move
+{
+	t_dest	destination;
+	t_rot	rotation;
+	int		c;
+	int		nb;
+}	t_move;
 
 void	ft_error_exit(void);
 void	ft_free_str(char **str);
@@ -49,17 +79,17 @@ int		ft_find_min(t_stack *stack);
 int		ft_find_max(t_stack *stack);
 int		ft_find_index(t_stack *stack, int nb);
 void	ft_sort_three(t_stack *stack);
-int		ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b);
+t_move	ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b);
 int		ft_find_new_b(t_stack *stack_b, int nbr_push);
 int		ft_find_new_a(t_stack *stack_a, int nb);
-int		ft_case_rarb(t_stack *stack_a, t_stack *stack_b, int nb);
-int		ft_case_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb);
-int		ft_case_rrarb(t_stack *stack_a, t_stack *stack_b, int nb);
-int		ft_case_rarrb(t_stack *stack_a, t_stack *stack_b, int nb);
-int		ft_apply_rarb(t_stack *a, t_stack *b, int nb, char s);
-int		ft_apply_rrarrb(t_stack *a, t_stack *b, int nb, char s);
-int		ft_apply_rrarb(t_stack *a, t_stack *b, int nb, char s);
-int		ft_apply_rarrb(t_stack *a, t_stack *b, int nb, char s);
+t_move	ft_ab_rarb(t_stack *stack_a, t_stack *stack_b, int nb);
+t_move	ft_ab_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb);
+t_move	ft_ab_rrarb(t_stack *stack_a, t_stack *stack_b, int nb);
+t_move	ft_ab_rarrb(t_stack *stack_a, t_stack *stack_b, int nb);
+int		ft_apply_rarb(t_stack *a, t_stack *b, t_move move);
+int		ft_apply_rrarrb(t_stack *a, t_stack *b, t_move move);
+int		ft_apply_rrarb(t_stack *a, t_stack *b, t_move move);
+int		ft_apply_rarrb(t_stack *a, t_stack *b, t_move move);
 void	ft_leaks(void);
 void	ft_print_stacks(t_stack	*stack_a, t_stack *stack_b);
 

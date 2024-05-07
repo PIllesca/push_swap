@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:31:35 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 18:07:14 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:28:15 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,28 @@ static void	ft_fill_stack(t_stack	*stack, int argc, char *argv[], int c)
 */
 void	ft_push_sort(t_stack *a, t_stack *b)
 {
-	int	index;
-	int	moves;
+	t_move	move;
 
 	while (a->size > 3 && !ft_chk_sorted(a))
 	{
-		index = a->size - 1;
-		moves = ft_best_ab_rotation(a, b);
-		while (moves >= 0)
-		{
-			if (moves == ft_case_rarb(a, b, a->array[index]))
-				moves = ft_apply_rarb(a, b, a->array[index], 'a');
-			else if (moves == ft_case_rrarrb(a, b, a->array[index]))
-				moves = ft_apply_rrarrb(a, b, a->array[index], 'a');
-			else if (moves == ft_case_rarrb(a, b, a->array[index]))
-				moves = ft_apply_rarrb(a, b, a->array[index], 'a');
-			else if (moves == ft_case_rrarb(a, b, a->array[index]))
-				moves = ft_apply_rrarb(a, b, a->array[index], 'a');
-			else
-				index--;
-		}
+		move = ft_best_ab_rotation(a, b);
+		if (move.rotation == rarb)
+			ft_apply_rarb(a, b, move);
+		else if (move.rotation == rrarrb)
+			ft_apply_rrarrb(a, b, move);
+		else if (move.rotation == rarrb)
+			ft_apply_rarrb(a, b, move);
+		else if (move.rotation == rrarb)
+			ft_apply_rrarb(a, b, move);
 	}
 }
 
+/**
+ * To do. If pops the already sorted stack b back to stack a
+ * 
+ * @param[in] stack_a Reference to Stack a
+ * @param[in] stack_b Reference to Stack b
+*/
 void	ft_pop_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	ft_print_stacks(stack_a, stack_b);
@@ -85,9 +84,9 @@ void	ft_pop_sort(t_stack *stack_a, t_stack *stack_b)
 /**
  * Sorts the stacks, if stack a is unsorted and of size two we swap a. 
  * Otherwise while stack a remains unsorted and bigger than size three we move 
- * everything to b. The first two elements for a maximum and minimum and the 
- * rest we move already sorted using those as a base. Once everything we need 
- * to move is in b we check to see if we need to sort the last three elements
+ * two elements to b for a maximum and minimum and the rest we move already 
+ * sorted using those as a base. Once everything we need to move is in b we 
+ * check to see if we need to sort the last three elements
  * 
  * @param[in] stack_a Reference to Stack a
  * @param[in] stack_b Reference to Stack b
@@ -113,6 +112,8 @@ void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
 
 /**
  * Currently incomplete, main function
+ * Initiates both stacks, fills stack a with the executable input and checks 
+ * if it is already sorted. If it isn't sorted calls the function ft_sort_stack
  * 
  * @param[in] argc Number of arguments
  * @param[in] argv String array input

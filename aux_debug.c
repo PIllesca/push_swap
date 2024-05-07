@@ -6,14 +6,14 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 00:18:14 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 00:21:27 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:21:48 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
 /**
- * Debug only, shows in any memory leaks in macos terminal
+ * Debug only, shows any memory leaks in macos terminal
 */
 void	ft_leaks(void)
 {
