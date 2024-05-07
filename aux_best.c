@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:26:37 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/07 13:50:10 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:04:35 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param[in] stack_b Reference to stack_b
  * @returns Struck with the number to move and in how many moves
 */
-t_move	ft_ab_rarb(t_stack *stack_a, t_stack *stack_b, int nb)
+static t_move	ft_ab_rarb(t_stack *stack_a, t_stack *stack_b, int nb)
 {
 	t_move	move;
 
@@ -44,7 +44,7 @@ t_move	ft_ab_rarb(t_stack *stack_a, t_stack *stack_b, int nb)
  * @param[in] stack_b Reference to stack_b
  * @returns Struck with the number to move and in how many moves
 */
-t_move	ft_ab_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb)
+static t_move	ft_ab_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb)
 {
 	t_move	move;
 
@@ -69,7 +69,7 @@ t_move	ft_ab_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb)
  * @param[in] stack_b Reference to stack_b
  * @returns Struck with the number to move and in how many moves
 */
-t_move	ft_ab_rrarb(t_stack *stack_a, t_stack *stack_b, int nb)
+static t_move	ft_ab_rrarb(t_stack *stack_a, t_stack *stack_b, int nb)
 {
 	t_move	move;
 
@@ -92,7 +92,7 @@ t_move	ft_ab_rrarb(t_stack *stack_a, t_stack *stack_b, int nb)
  * @param[in] stack_b Reference to stack_b
  * @returns Struck with the number to move and in how many moves
 */
-t_move	ft_ab_rarrb(t_stack *stack_a, t_stack *stack_b, int nb)
+static t_move	ft_ab_rarrb(t_stack *stack_a, t_stack *stack_b, int nb)
 {
 	t_move	move;
 

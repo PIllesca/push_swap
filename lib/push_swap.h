@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:14:34 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/07 13:48:33 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:04:09 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,6 @@ void	ft_sort_three(t_stack *stack);
 t_move	ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b);
 int		ft_find_new_b(t_stack *stack_b, int nbr_push);
 int		ft_find_new_a(t_stack *stack_a, int nb);
-t_move	ft_ab_rarb(t_stack *stack_a, t_stack *stack_b, int nb);
-t_move	ft_ab_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb);
-t_move	ft_ab_rrarb(t_stack *stack_a, t_stack *stack_b, int nb);
-t_move	ft_ab_rarrb(t_stack *stack_a, t_stack *stack_b, int nb);
 int		ft_apply_rarb(t_stack *a, t_stack *b, t_move move);
 int		ft_apply_rrarrb(t_stack *a, t_stack *b, t_move move);
 int		ft_apply_rrarb(t_stack *a, t_stack *b, t_move move);
