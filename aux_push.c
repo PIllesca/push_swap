@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:46:39 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/07 13:50:34 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:42:50 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_apply_rrarrb(t_stack *a, t_stack *b, t_move move)
 			ft_rrr(a, b);
 		while (b->array[b->size - 1] != move.nb)
 			ft_rrb(b);
-		while (ft_find_new_a(a, move.nb) > 0)
+		while (ft_find_new_a(a, move.nb) > a->size - 1)
 			ft_rra(a);
 		ft_pa(a, b);
 	}
@@ -102,7 +102,7 @@ int	ft_apply_rrarb(t_stack *a, t_stack *b, t_move move)
 	}
 	else
 	{
-		while (ft_find_new_a(a, move.nb) > 0)
+		while (ft_find_new_a(a, move.nb) < 0)
 			ft_rra(a);
 		while (b->array[b->size - 1] != move.nb)
 			ft_rb(b);

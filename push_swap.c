@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:31:35 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/07 12:28:15 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:22:26 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,22 @@ static void	ft_fill_stack(t_stack	*stack, int argc, char *argv[], int c)
  * @param[in] stack_a Reference to Stack a
  * @param[in] stack_b Reference to Stack b
 */
-void	ft_push_sort(t_stack *a, t_stack *b)
+void	ft_push_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_move	move;
 
-	while (a->size > 3 && !ft_chk_sorted(a))
+	while (stack_a->size > 3 && !ft_chk_sorted(stack_a))
 	{
-		move = ft_best_ab_rotation(a, b);
+		ft_print_stacks(stack_a, stack_b);
+		move = ft_best_ab_rotation(stack_a, stack_b);
 		if (move.rotation == rarb)
-			ft_apply_rarb(a, b, move);
+			ft_apply_rarb(stack_a, stack_b, move);
 		else if (move.rotation == rrarrb)
-			ft_apply_rrarrb(a, b, move);
+			ft_apply_rrarrb(stack_a, stack_b, move);
 		else if (move.rotation == rarrb)
-			ft_apply_rarrb(a, b, move);
+			ft_apply_rarrb(stack_a, stack_b, move);
 		else if (move.rotation == rrarb)
-			ft_apply_rrarb(a, b, move);
+			ft_apply_rrarb(stack_a, stack_b, move);
 	}
 }
 
@@ -78,7 +79,21 @@ void	ft_push_sort(t_stack *a, t_stack *b)
 */
 void	ft_pop_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_print_stacks(stack_a, stack_b);
+	t_move	move;
+
+	while (stack_b->size > 0)
+	{
+		ft_print_stacks(stack_a, stack_b);
+		move = ft_best_ba_rotation(stack_a, stack_b);
+		if (move.rotation == rarb)
+			ft_apply_rarb(stack_a, stack_b, move);
+		else if (move.rotation == rrarrb)
+			ft_apply_rrarrb(stack_a, stack_b, move);
+		else if (move.rotation == rarrb)
+			ft_apply_rarrb(stack_a, stack_b, move);
+		else if (move.rotation == rrarb)
+			ft_apply_rrarb(stack_a, stack_b, move);
+	}
 }
 
 /**
@@ -127,7 +142,6 @@ void	ft_push_swap(int argc, char *argv[], int c)
 	stack_a = ft_create_stack(c);
 	stack_b = ft_create_stack(c);
 	ft_fill_stack(stack_a, argc, argv, c);
-	ft_print_stacks(stack_a, stack_b);
 	if (!ft_chk_sorted(stack_a))
 		ft_sort_stack(stack_a, stack_b);
 	ft_print_stacks(stack_a, stack_b);

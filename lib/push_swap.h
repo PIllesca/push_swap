@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:14:34 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/07 14:04:09 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:22:46 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include "libft/libft.h"
 
+/**
+ * Contains the stack and stack size
+ * 
+ * @param array Int array with the content of the stack
+ * @param size The size of the stack
+*/
 typedef struct s_stack
 {
 	int	*array;
@@ -80,6 +86,7 @@ int		ft_find_max(t_stack *stack);
 int		ft_find_index(t_stack *stack, int nb);
 void	ft_sort_three(t_stack *stack);
 t_move	ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b);
+t_move	ft_best_ba_rotation(t_stack *stack_a, t_stack *stack_b);
 int		ft_find_new_b(t_stack *stack_b, int nbr_push);
 int		ft_find_new_a(t_stack *stack_a, int nb);
 int		ft_apply_rarb(t_stack *a, t_stack *b, t_move move);
