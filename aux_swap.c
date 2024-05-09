@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:56:27 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 13:39:31 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:00:48 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
  * 
  * @param[in] stack Stack to swap
 */
-static void	ft_swap(t_stack *stack)
+static void	ft_swap(t_stack **stack)
 {
 	t_stack	*tmp;
 
-	if (!stack || !stack->next)
+	if (!(*stack) || !(*stack)->next)
 		return ;
-	tmp = stack;
-	stack = tmp->next;
-	tmp->next = stack->next;
-	stack->next = tmp;
+	tmp = *stack;
+	*stack = tmp->next;
+	tmp->next = (*stack)->next;
+	(*stack)->next = tmp;
 }
 
 /**
@@ -34,7 +34,7 @@ static void	ft_swap(t_stack *stack)
  * 
  * @param[in] s_a Stack a
 */
-void	ft_sa(t_stack *s_a)
+void	ft_sa(t_stack **s_a)
 {
 	ft_swap(s_a);
 	ft_putendl_fd("sa", 1);
@@ -45,7 +45,7 @@ void	ft_sa(t_stack *s_a)
  * 
  * @param[in] s_b Stack b
 */
-void	ft_sb(t_stack *s_b)
+void	ft_sb(t_stack **s_b)
 {
 	ft_swap(s_b);
 	ft_putendl_fd("sb", 1);
@@ -57,7 +57,7 @@ void	ft_sb(t_stack *s_b)
  * @param[in] s_a Stack a
  * @param[in] s_b Stack b
 */
-void	ft_ss(t_stack *s_a, t_stack *s_b)
+void	ft_ss(t_stack **s_a, t_stack **s_b)
 {
 	ft_swap(s_a);
 	ft_swap(s_b);

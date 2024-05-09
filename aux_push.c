@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:15:08 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 13:39:08 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:17:49 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,16 @@
  * @param[in] dst Destination stack
  * @param[in] src Source stack
  */
-static void	ft_push(t_stack *src, t_stack *dst)
+static void	ft_push(t_stack **src, t_stack **dst)
 {
 	t_stack	*tmp;
 
-	if (!src)
+	if (!(*src))
 		return ;
-	while (src && src->next)
-	{
-		tmp = src;
-		src = tmp->next;
-	}
-	while (dst)
-		dst = (dst)->next;
-	dst->next = src;
-	tmp->next = NULL;
+	tmp = *src;
+	*src = tmp->next;
+	tmp->next = *dst;
+	*dst = tmp;
 }
 
 /**
@@ -41,7 +36,7 @@ static void	ft_push(t_stack *src, t_stack *dst)
  * @param[in] s_a Stack a
  * @param[in] s_b Stack b
  */
-void	ft_pa(t_stack *s_a, t_stack *s_b)
+void	ft_pa(t_stack **s_a, t_stack **s_b)
 {
 	ft_push(s_b, s_a);
 	ft_putendl_fd("pa", 1);
@@ -53,7 +48,7 @@ void	ft_pa(t_stack *s_a, t_stack *s_b)
  * @param[in] s_a Stack a
  * @param[in] s_b Stack b
  */
-void	ft_pb(t_stack *s_a, t_stack *s_b)
+void	ft_pb(t_stack **s_a, t_stack **s_b)
 {
 	ft_push(s_a, s_b);
 	ft_putendl_fd("pb", 1);

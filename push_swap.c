@@ -6,19 +6,19 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:24:56 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 14:55:56 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:32:18 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
-static void ft_push_sort(t_stack *s_a, t_stack *s_b)
+static void ft_push_sort(t_stack **s_a, t_stack **s_b)
 {
 	t_move	move;
 
-	while (ft_stack_size(s_a) > 3 && !ft_chk_sorted(s_a))
+	while (ft_stack_size(*s_a) > 3 && !ft_chk_sorted(*s_a))
 	{
-		move = ft_best_ab_rotation(s_a, s_b);
+		move = ft_best_ab_rotation(*s_a, *s_b);
 		if (move.rotation == rarb)
 			ft_apply_rarb(s_a, s_b, move);
 		else if (move.rotation == rrarrb)
@@ -30,21 +30,23 @@ static void ft_push_sort(t_stack *s_a, t_stack *s_b)
 	}
 }
 
-static void	ft_sort_stack(t_stack *s_a, t_stack *s_b)
+static void	ft_sort_stack(t_stack **s_a, t_stack **s_b)
 {
-	if (ft_stack_size(s_a) == 2)
+	ft_print_stacks(*s_a, *s_b);
+	if (ft_stack_size(*s_a) == 2)
 		ft_sa(s_a);
 	else
 	{
-		if (ft_stack_size(s_a) > 3 && !ft_chk_sorted(s_a))
+		if (ft_stack_size(*s_a) > 3 && !ft_chk_sorted(*s_a))
 			ft_pb(s_a, s_b);
-		if (ft_stack_size(s_a) > 3 && !ft_chk_sorted(s_a))
+		if (ft_stack_size(*s_a) > 3 && !ft_chk_sorted(*s_a))
 			ft_pb(s_a, s_b);
-		if (ft_stack_size(s_a) > 3 && !ft_chk_sorted(s_a))
+		if (ft_stack_size(*s_a) > 3 && !ft_chk_sorted(*s_a))
 			ft_push_sort(s_a, s_b);
-		if (!ft_chk_sorted(s_a))
+		if (ft_stack_size(*s_a) == 3 && !ft_chk_sorted(*s_a))
 			ft_sort_three(s_a);
 	}
+	ft_print_stacks(*s_a, *s_b);
 }
 
 /**
@@ -63,10 +65,8 @@ void	ft_push_swap(int argc, char *argv[])
 
 	stack_a = ft_init_stack(argc, argv);
 	stack_b = NULL;
-	ft_print_stacks(stack_a, NULL);
 	if (!ft_chk_sorted(stack_a))
-		ft_sort_stack(stack_a, stack_b);
-	ft_print_stacks(stack_a, NULL);
+		ft_sort_stack(&stack_a, &stack_b);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 }
