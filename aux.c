@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 11:29:40 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 12:05:57 by pillesca         ###   ########.fr       */
+/*   Created: 2024/05/09 12:35:33 by pillesca          #+#    #+#             */
+/*   Updated: 2024/05/09 13:29:34 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,19 @@ long	ft_atol(const char *str)
 }
 
 /**
+ * Exits the program with an error message
+ * 
+ * @param[in] s_a Stack to free
+*/
+void	ft_error_exit(t_stack *s_a)
+{
+	if (s_a)
+		ft_free_stack(s_a);
+	ft_putendl_fd("Error", 2);
+	exit(EXIT_FAILURE);
+}
+
+/**
  * Frees the memory from a ft_split
  * 
  * @param[in] str String array to free
@@ -63,32 +76,21 @@ void	ft_free_str(char **str)
 }
 
 /**
- * Controlled error exit
-*/
-void	ft_error_exit(void)
-{
-	ft_putstr_fd("Error\n", 1);
-	exit(EXIT_FAILURE);
-}
-
-/**
- * Checks if the stack is already sorted
+ * Checks if the stack is sorted
  * 
  * @param[in] stack Stack to check
  * @returns 1 if sorted, 0 if not
 */
 int	ft_chk_sorted(t_stack *stack)
 {
-	int	i;
-	int	tmp;
+	t_stack	*tmp;
 
-	i = stack->size - 1;
-	tmp = stack->array[i];
-	while (i--)
+	tmp = stack;
+	while (tmp->next)
 	{
-		if (tmp > stack->array[i])
+		if (tmp->nb > tmp->next->nb)
 			return (0);
-		tmp = stack->array[i];
+		tmp = tmp->next;
 	}
 	return (1);
 }

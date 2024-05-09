@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:08:31 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/04 22:36:33 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 12:50:05 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ft_error(char **args, int argc)
 {
 	if (argc == 2)
 		ft_free_str(args);
-	ft_error_exit();
+	ft_error_exit(NULL);
 }
 
 /**
@@ -76,7 +76,7 @@ static void	ft_error(char **args, int argc)
  * @param[in] argv String array input
  * @returns The amount of numbers found in the executable arguments
 */
-int	ft_chk_args(int argc, char *argv[])
+void	ft_chk_args(int argc, char *argv[])
 {
 	int		i;
 	long	tmp;
@@ -100,6 +100,5 @@ int	ft_chk_args(int argc, char *argv[])
 	if (argc == 2)
 		ft_free_str(args);
 	if (i < 2)
-		ft_error_exit();
-	return (i);
+		ft_error_exit(NULL);
 }

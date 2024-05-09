@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux_debug.c                                        :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 00:18:14 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/06 11:21:48 by pillesca         ###   ########.fr       */
+/*   Created: 2024/05/09 12:22:04 by pillesca          #+#    #+#             */
+/*   Updated: 2024/05/09 13:26:59 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,24 @@ void	ft_leaks(void)
 	system("leaks -q push_swap");
 }
 
-/**
- * Debug only, shows the numbers contained in the stack
- * 
- * @param[in] stack Stack to print
-*/
-void	ft_print_stacks(t_stack	*stack_a, t_stack *stack_b)
+void	ft_print_stacks(t_stack *s_a, t_stack *s_b)
 {
-	int	i;
-	int	j;
-	int	k;
-
-	i = stack_a->size;
-	j = stack_b->size;
-	if (i > j)
-		k = i;
-	else
-		k = j;
-	while (k--)
+	ft_putendl_fd("A\tB", 1);
+	while (s_a || s_b)
 	{
-		i--;
-		j--;
-		if (i >= 0)
-			ft_putnbr_fd(stack_a->array[i], 1);
+		if (s_a)
+		{
+			ft_putnbr_fd(s_a->nb, 1);
+			s_a = s_a->next;
+		}
 		else
 			ft_putchar_fd(' ', 1);
-		ft_putchar_fd(' ', 1);
-		if (j >= 0)
-			ft_putnbr_fd(stack_b->array[j], 1);
-		else
-			ft_putchar_fd(' ', 1);
+		ft_putchar_fd('\t', 1);
+		if (s_b)
+		{
+			ft_putnbr_fd(s_b->nb, 1);
+			s_b = s_b->next;
+		}
 		ft_putchar_fd('\n', 1);
 	}
 }

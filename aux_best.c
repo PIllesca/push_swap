@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 11:26:37 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/07 14:04:35 by pillesca         ###   ########.fr       */
+/*   Created: 2024/05/09 13:44:06 by pillesca          #+#    #+#             */
+/*   Updated: 2024/05/09 14:11:59 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static t_move	ft_ab_rrarrb(t_stack *stack_a, t_stack *stack_b, int nb)
 	move.rotation = rrarrb;
 	move.nb = nb;
 	if (ft_find_new_b(stack_b, nb))
-		move.c = stack_b->size - ft_find_new_b(stack_b, nb);
+		move.c = ft_stack_size(stack_b) - ft_find_new_b(stack_b, nb);
 	if (ft_find_index(stack_a, nb)
-		&& (move.c < (stack_a->size - ft_find_index(stack_a, nb))))
-		move.c = stack_a->size - ft_find_index(stack_a, nb);
+		&& (move.c < (ft_stack_size(stack_a) - ft_find_index(stack_a, nb))))
+		move.c = ft_stack_size(stack_a) - ft_find_index(stack_a, nb);
 	return (move);
 }
 
@@ -78,7 +78,7 @@ static t_move	ft_ab_rrarb(t_stack *stack_a, t_stack *stack_b, int nb)
 	move.rotation = rrarb;
 	move.nb = nb;
 	if (ft_find_index(stack_a, nb))
-		move.c = stack_a->size - ft_find_index(stack_a, nb);
+		move.c = ft_stack_size(stack_a) - ft_find_index(stack_a, nb);
 	move.c = ft_find_new_b(stack_b, nb) + move.c;
 	return (move);
 }
@@ -101,7 +101,7 @@ static t_move	ft_ab_rarrb(t_stack *stack_a, t_stack *stack_b, int nb)
 	move.rotation = rarrb;
 	move.nb = nb;
 	if (ft_find_new_b(stack_b, nb))
-		move.c = stack_b->size - ft_find_new_b(stack_b, nb);
+		move.c = ft_stack_size(stack_a) - ft_find_new_b(stack_b, nb);
 	move.c = ft_find_index(stack_a, nb) + move.c;
 	return (move);
 }
@@ -117,22 +117,22 @@ static t_move	ft_ab_rarrb(t_stack *stack_a, t_stack *stack_b, int nb)
 */
 t_move	ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b)
 {
-	int		index;
 	t_move	move;
+	t_stack	*tmp;
 
-	index = 0;
-	move = ft_ab_rrarrb(stack_a, stack_b, stack_a->array[index]);
-	while (index < stack_a->size)
+	tmp = stack_a;
+	move = ft_ab_rrarrb(stack_a, stack_b, stack_a->nb);
+	while (tmp)
 	{
-		if (move.c > ft_ab_rarb(stack_a, stack_b, stack_a->array[index]).c)
-			move = ft_ab_rarb(stack_a, stack_b, stack_a->array[index]);
-		if (move.c > ft_ab_rrarrb(stack_a, stack_b, stack_a->array[index]).c)
-			move = ft_ab_rrarrb(stack_a, stack_b, stack_a->array[index]);
-		if (move.c > ft_ab_rarrb(stack_a, stack_b, stack_a->array[index]).c)
-			move = ft_ab_rarrb(stack_a, stack_b, stack_a->array[index]);
-		if (move.c > ft_ab_rrarb(stack_a, stack_b, stack_a->array[index]).c)
-			move = ft_ab_rrarb(stack_a, stack_b, stack_a->array[index]);
-		index++;
+		if (move.c > ft_ab_rarb(stack_a, stack_b, stack_a->nb).c)
+			move = ft_ab_rarb(stack_a, stack_b, stack_a->nb);
+		if (move.c > ft_ab_rrarrb(stack_a, stack_b, stack_a->nb).c)
+			move = ft_ab_rrarrb(stack_a, stack_b, stack_a->nb);
+		if (move.c > ft_ab_rarrb(stack_a, stack_b, stack_a->nb).c)
+			move = ft_ab_rarrb(stack_a, stack_b, stack_a->nb);
+		if (move.c > ft_ab_rrarb(stack_a, stack_b, stack_a->nb).c)
+			move = ft_ab_rrarb(stack_a, stack_b, stack_a->nb);
+		tmp = tmp->next;
 	}
 	return (move);
 }

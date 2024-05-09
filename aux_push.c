@@ -5,137 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 12:46:39 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/07 20:42:50 by pillesca         ###   ########.fr       */
+/*   Created: 2024/05/09 13:15:08 by pillesca          #+#    #+#             */
+/*   Updated: 2024/05/09 13:39:08 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
 /**
- * Rotate both stacks and push
+ * Pushes the top element of stack src to stack dst
  * 
- * @param[in] a Reference to stack a
- * @param[in] b Reference to stack b
- * @param[in] move Struct with the number tu push and target stack
- * @return -1 to reduce moves on call function
-*/
-int	ft_apply_rarb(t_stack *a, t_stack *b, t_move move)
+ * @param[in] dst Destination stack
+ * @param[in] src Source stack
+ */
+static void	ft_push(t_stack *src, t_stack *dst)
 {
-	if (move.destination == b_stack)
+	t_stack	*tmp;
+
+	if (!src)
+		return ;
+	while (src && src->next)
 	{
-		while (a->array[a->size - 1] != move.nb
-			&& ft_find_new_b(b, move.nb) > 0)
-			ft_rr(a, b);
-		while (a->array[a->size - 1] != move.nb)
-			ft_ra(a);
-		while (ft_find_new_b(b, move.nb) > 0)
-			ft_rb(b);
-		ft_pb(a, b);
+		tmp = src;
+		src = tmp->next;
 	}
-	else
-	{
-		while (b->array[b->size - 1] != move.nb
-			&& ft_find_new_a(a, move.nb) > 0)
-			ft_rr(a, b);
-		while (b->array[b->size - 1] != move.nb)
-			ft_rb(b);
-		while (ft_find_new_a(a, move.nb) > 0)
-			ft_ra(a);
-		ft_pa(a, b);
-	}
-	return (-1);
+	while (dst)
+		dst = (dst)->next;
+	dst->next = src;
+	tmp->next = NULL;
 }
 
 /**
- * Reverse Rotate both stacks and push
+ * Pushes the top element of stack a to stack b
  * 
- * @param[in] a Reference to stack a
- * @param[in] b Reference to stack b
- * @param[in] move Struct with the number tu push and target stack
- * @return -1 to reduce moves on call function
-*/
-int	ft_apply_rrarrb(t_stack *a, t_stack *b, t_move move)
+ * @param[in] s_a Stack a
+ * @param[in] s_b Stack b
+ */
+void	ft_pa(t_stack *s_a, t_stack *s_b)
 {
-	if (move.destination == b_stack)
-	{
-		while (a->array[a->size - 1] != move.nb
-			&& ft_find_new_b(b, move.nb) > 0)
-			ft_rrr(a, b);
-		while (a->array[a->size - 1] != move.nb)
-			ft_rra(a);
-		while (ft_find_new_b(b, move.nb) > 0)
-			ft_rrb(b);
-		ft_pb(a, b);
-	}
-	else
-	{
-		while (b->array[b->size - 1] != move.nb
-			&& ft_find_new_a(a, move.nb) > 0)
-			ft_rrr(a, b);
-		while (b->array[b->size - 1] != move.nb)
-			ft_rrb(b);
-		while (ft_find_new_a(a, move.nb) > a->size - 1)
-			ft_rra(a);
-		ft_pa(a, b);
-	}
-	return (-1);
+	ft_push(s_b, s_a);
+	ft_putendl_fd("pa", 1);
 }
 
 /**
- * Rotates stack b and Reverse Rotates stack a and push
+ * Pushes the top element of stack b to stack a
  * 
- * @param[in] a Reference to stack a
- * @param[in] b Reference to stack b
- * @param[in] move Struct with the number tu push and target stack
- * @return -1 to reduce moves on call function
-*/
-int	ft_apply_rrarb(t_stack *a, t_stack *b, t_move move)
+ * @param[in] s_a Stack a
+ * @param[in] s_b Stack b
+ */
+void	ft_pb(t_stack *s_a, t_stack *s_b)
 {
-	if (move.destination == b_stack)
-	{
-		while (a->array[a->size - 1] != move.nb)
-			ft_rra(a);
-		while (ft_find_new_b(b, move.nb) > 0)
-			ft_rb(b);
-		ft_pb(a, b);
-	}
-	else
-	{
-		while (ft_find_new_a(a, move.nb) < 0)
-			ft_rra(a);
-		while (b->array[b->size - 1] != move.nb)
-			ft_rb(b);
-		ft_pa(a, b);
-	}
-	return (-1);
+	ft_push(s_a, s_b);
+	ft_putendl_fd("pb", 1);
 }
 
 /**
- * Rotates stack a and Reverse Rotates stack b and push
+ * Returns the size of the stack
  * 
- * @param[in] a Reference to stack a
- * @param[in] b Reference to stack b
- * @param[in] move Struct with the number tu push and target stack
- * @return -1 to reduce moves on call function
-*/
-int	ft_apply_rarrb(t_stack *a, t_stack *b, t_move move)
+ * @param[in] stack Stack to measure
+ * @returns Size of the stack
+ */
+int	ft_stack_size(t_stack *stack)
 {
-	if (move.destination == b_stack)
+	int		size;
+
+	size = 0;
+	while (stack)
 	{
-		while (a->array[a->size - 1] != move.nb)
-			ft_ra(a);
-		while (ft_find_new_b(b, move.nb) > 0)
-			ft_rrb(b);
-		ft_pb(a, b);
+		stack = stack->next;
+		size++;
 	}
-	else
-	{
-		while (ft_find_new_a(a, move.nb) > 0)
-			ft_ra(a);
-		while (b->array[b->size - 1] != move.nb)
-			ft_rrb(b);
-		ft_pa(a, b);
-	}
-	return (-1);
+	return (size);
 }

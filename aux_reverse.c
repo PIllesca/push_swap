@@ -5,69 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 23:38:54 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/05 00:01:19 by pillesca         ###   ########.fr       */
+/*   Created: 2024/05/09 14:28:04 by pillesca          #+#    #+#             */
+/*   Updated: 2024/05/09 14:31:44 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
 /**
- * Similar to ft_rotate_stack shifts all the numbers in the stack array by one 
- * position, and swaps the * first and last positions. Only in the opposite
- * direction
+ * Rotates a stack in reverse
  * 
  * @param[in] stack Stack to rotate
 */
-void	ft_reverse_rotation(t_stack *stack)
+void	ft_reverse_rotate(t_stack *stack)
 {
-	int	i;
-	int	tmp;
+	t_stack	*tmp;
+	t_stack	*last;
 
-	i = 1;
-	tmp = stack->array[0];
-	stack->array[0] = stack->array[stack->size - 1];
-	stack->array[stack->size - 1] = tmp;
-	while (i < stack->size - 1)
+	if (!stack || !stack->next)
+		return ;
+	tmp = stack;
+	while (stack->next)
 	{
-		tmp = stack->array[i];
-		stack->array[i] = stack->array[i - 1];
-		stack->array[i - 1] = tmp;
-		i++;
+		last = stack;
+		stack = stack->next;
 	}
+	stack->next = tmp;
+	last->next = NULL;
 }
 
 /**
- * Reverse rotates Stack a and prints rra on the terminal
+ * Rotates stack a in reverse
  * 
- * @param[in] stack_a Reference to Stack a
+ * @param[in] stack Stack to rotate
 */
 void	ft_rra(t_stack *stack_a)
 {
-	ft_reverse_rotation(stack_a);
+	if (!stack_a || !stack_a->next)
+		return ;
+	ft_reverse_rotate(stack_a);
 	ft_putendl_fd("rra", 1);
 }
 
 /**
- * Reverse rotates Stack b and prints rrb on the terminal
+ * Rotates stack b in reverse
  * 
- * @param[in] stack_b Reference to Stack b
+ * @param[in] stack Stack to rotate
 */
 void	ft_rrb(t_stack *stack_b)
 {
-	ft_reverse_rotation(stack_b);
+	if (!stack_b || !stack_b->next)
+		return ;
+	ft_reverse_rotate(stack_b);
 	ft_putendl_fd("rrb", 1);
 }
 
 /**
- * Reverse rotates Stack a and Stack b and prints rrr on the terminal
+ * Rotates both stacks in reverse
  * 
- * @param[in] stack_a Reference to Stack a
- * @param[in] stack_b Reference to Stack b
+ * @param[in] stack_a Reference to stack a
+ * @param[in] stack_b Reference to stack b
 */
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_reverse_rotation(stack_a);
-	ft_reverse_rotation(stack_b);
+	if (!stack_a || !stack_a->next || !stack_b || !stack_b->next)
+		return ;
+	ft_reverse_rotate(stack_a);
+	ft_reverse_rotate(stack_b);
 	ft_putendl_fd("rrr", 1);
 }
