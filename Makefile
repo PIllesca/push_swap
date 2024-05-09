@@ -6,7 +6,7 @@
 #    By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 12:24:06 by pillesca          #+#    #+#              #
-#    Updated: 2024/05/09 14:58:19 by pillesca         ###   ########.fr        #
+#    Updated: 2024/05/09 17:47:40 by pillesca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ LIBFTSRC = libft.a
 LIBFTDIR = ./lib/libft
 
 SRC = args_chk.c aux.c aux_stack.c aux_swap.c aux_push.c aux_rotate.c 
-SRC += aux_reverse.c aux_best.c aux_sort.c aux_apply.c debug.c aux_find.c
-SRC += main.c push_swap.c
+SRC += aux_reverse.c aux_best.c aux_best2.c aux_sort.c aux_apply.c aux_find.c
+SRC += main.c push_swap.c debug.c
 
 OBJ = $(SRC:.c=.o)
 

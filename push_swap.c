@@ -6,12 +6,40 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:24:56 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 17:32:18 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:53:03 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
+/**
+ * This functions pushes the already sorted numbers from stack b to stack a
+*/
+static void	ft_pop_sort(t_stack **s_a, t_stack **s_b)
+{
+	t_move	move;
+
+	while (ft_stack_size(*s_b) > 0)
+	{
+		move = ft_best_ba_rotation(*s_a, *s_b);
+		if (move.rotation == rarb)
+			ft_apply_rarb(s_a, s_b, move);
+		else if (move.rotation == rrarrb)
+			ft_apply_rrarrb(s_a, s_b, move);
+		else if (move.rotation == rarrb)
+			ft_apply_rarrb(s_a, s_b, move);
+		else if (move.rotation == rrarb)
+			ft_apply_rrarb(s_a, s_b, move);
+	}
+}
+
+/**
+ * This function sorts as it pushes the numbers from stack a to stack b until
+ * there are only 3 numbers left in stack a or stack a is sorted
+ * 
+ * @param[in] s_a Reference to stack a
+ * @param[in] s_b Reference to stack b
+*/
 static void ft_push_sort(t_stack **s_a, t_stack **s_b)
 {
 	t_move	move;
@@ -30,9 +58,38 @@ static void ft_push_sort(t_stack **s_a, t_stack **s_b)
 	}
 }
 
+/**
+ * This function rotates stack a to the correct position after sorting if it
+ * isn't in the correct position.
+ * 
+ * @param[in] s_a Reference to stack a
+*/
+static void	ft_rotate_sort(t_stack **s_a)
+{
+	int	min;
+	int	max;	
+
+	if (!ft_chk_sorted(*s_a))
+	{
+		min = ft_find_index(*s_a, ft_find_min(*s_a));
+		max = ft_find_index(*s_a, ft_find_max(*s_a));
+		if (max < min)
+			while (max--)
+				ft_rra(s_a);
+		else
+			while (min--)
+				ft_ra(s_a);
+	}
+}
+
+/**
+ * This functions uses stack b to sort stack a. If it has 2 elements it swaps
+ * them, if it has more than 3 elements it pushes the elements and sorts them
+ * in stack b, if stack a has 3 unsroted elements it sorts them. Finally it
+ * pushes the sorted elements from stack b to stack a.
+*/
 static void	ft_sort_stack(t_stack **s_a, t_stack **s_b)
 {
-	ft_print_stacks(*s_a, *s_b);
 	if (ft_stack_size(*s_a) == 2)
 		ft_sa(s_a);
 	else
@@ -46,13 +103,14 @@ static void	ft_sort_stack(t_stack **s_a, t_stack **s_b)
 		if (ft_stack_size(*s_a) == 3 && !ft_chk_sorted(*s_a))
 			ft_sort_three(s_a);
 	}
-	ft_print_stacks(*s_a, *s_b);
+	ft_pop_sort(s_a, s_b);
+	ft_rotate_sort(s_a);
 }
 
 /**
- * Currently incomplete, main function
- * Initiates both stacks, fills stack a with the executable input and checks 
- * if it is already sorted. If it isn't sorted calls the function ft_sort_stack
+ * Main function. Initiates stack a with the executable input and checks if it
+ * is already sorted. If it isn't sorted calls the function ft_sort_stack to
+ * sort the stack.
  * 
  * @param[in] argc Number of arguments
  * @param[in] argv String array input
@@ -65,8 +123,10 @@ void	ft_push_swap(int argc, char *argv[])
 
 	stack_a = ft_init_stack(argc, argv);
 	stack_b = NULL;
+	ft_print_stacks(stack_a, stack_b);
 	if (!ft_chk_sorted(stack_a))
 		ft_sort_stack(&stack_a, &stack_b);
+	ft_print_stacks(stack_a, stack_b);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 }

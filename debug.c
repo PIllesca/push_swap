@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:22:04 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 13:26:59 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:32:58 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	ft_leaks(void)
 	system("leaks -q push_swap");
 }
 
+/**
+ * Debug only, prints the stacks in the terminal
+*/
 void	ft_print_stacks(t_stack *s_a, t_stack *s_b)
 {
 	ft_putendl_fd("A\tB", 1);

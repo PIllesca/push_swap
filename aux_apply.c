@@ -6,12 +6,20 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:36:00 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 17:29:49 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:23:41 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
+/**
+ * This function rotates both stacks to prepare the push and executes the push
+ * 
+ * @param a The stack a.
+ * @param b The stack b.
+ * @param move The move to be executed.
+ * @return -1 if the operation was successful, 0 otherwise.
+*/
 int	ft_apply_rarb(t_stack **a, t_stack **b, t_move move)
 {
 	if (move.destination == b_stack)
@@ -37,8 +45,15 @@ int	ft_apply_rarb(t_stack **a, t_stack **b, t_move move)
 	return (-1);
 }
 
-// This function rotate both stack_a and stack_b in the
-// reverse direction as required amount.
+/**
+ * This function reverse rotates both stacks to prepare the push and executes
+ * the push
+ * 
+ * @param a The stack a.
+ * @param b The stack b.
+ * @param move The move to be executed.
+ * @return -1 if the operation was successful, 0 otherwise.
+*/
 int	ft_apply_rrarrb(t_stack **a, t_stack **b, t_move move)
 {
 	if (move.destination == b_stack)
@@ -64,8 +79,15 @@ int	ft_apply_rrarrb(t_stack **a, t_stack **b, t_move move)
 	return (-1);
 }
 
-// This function rotate the stack_a in reverse direction,
-// the stack_b in oppsite direction of stack_a as required amount.
+/**
+ * This function rotates the stack b and reverse rotates the stack a as required
+ * to prepare the push and executes the push
+ * 
+ * @param a The stack a.
+ * @param b The stack b.
+ * @param move The move to be executed.
+ * @return -1 if the operation was successful, 0 otherwise.
+*/
 int	ft_apply_rrarb(t_stack **a, t_stack **b, t_move move)
 {
 	if (move.destination == b_stack)
@@ -87,8 +109,15 @@ int	ft_apply_rrarb(t_stack **a, t_stack **b, t_move move)
 	return (-1);
 }
 
-// This function rotate the stack_b in reverse direction,
-// the stack_a in oppsite direction of stack_a as required amount.
+/**
+ * This functions rotates the stack a and reverse rotates the stack b as required
+ * to prepare the push and executes the push
+ * 
+ * @param a The stack a.
+ * @param b The stack b.
+ * @param move The move to be executed.
+ * @return -1 if the operation was successful, 0 otherwise.
+*/
 int	ft_apply_rarrb(t_stack **a, t_stack **b, t_move move)
 {
 	if (move.destination == b_stack)

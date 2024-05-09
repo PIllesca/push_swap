@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:14:34 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 17:30:14 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:46:40 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int		ft_find_index(t_stack *stack, int nb);
 int		ft_find_new_b(t_stack *stack, int nb);
 int		ft_find_new_a(t_stack *stack_a, int nb);
 t_move	ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b);
+t_move	ft_best_ba_rotation(t_stack *stack_a, t_stack *stack_b);
 void	ft_pa(t_stack **s_a, t_stack **s_b);
 void	ft_pb(t_stack **s_a, t_stack **s_b);
 void	ft_sa(t_stack **s_a);

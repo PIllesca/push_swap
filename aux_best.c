@@ -6,14 +6,14 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:44:06 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 14:11:59 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:31:10 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/push_swap.h"
 
 /**
- * This function calculates how many times we need to rotate both stacks.
+ * This funcion calculates how many rotations are needed to prepare the push.
  * Returns whichever is lowest the new position in stack b or current position 
  * in stack a.
  * 
@@ -107,9 +107,9 @@ static t_move	ft_ab_rarrb(t_stack *stack_a, t_stack *stack_b, int nb)
 }
 
 /**
- * Finds the least amount of moves to prepare to make push b. Checks how many
- * moves it would take to prepare both stacks for the push for each element of
- * stack a and returns the least amount of moves posible.
+ * Finds the rotation with the least amount of moves to push a number from
+ * stack a to stack b. Returns a struct with the number to move, in how many
+ * moves and the rotation to be executed.
  * 
  * @param[in] stack_a Reference to stack_a
  * @param[in] stack_b Reference to stack_b
@@ -121,17 +121,17 @@ t_move	ft_best_ab_rotation(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*tmp;
 
 	tmp = stack_a;
-	move = ft_ab_rrarrb(stack_a, stack_b, stack_a->nb);
+	move = ft_ab_rrarrb(stack_a, stack_b, tmp->nb);
 	while (tmp)
 	{
-		if (move.c > ft_ab_rarb(stack_a, stack_b, stack_a->nb).c)
-			move = ft_ab_rarb(stack_a, stack_b, stack_a->nb);
-		if (move.c > ft_ab_rrarrb(stack_a, stack_b, stack_a->nb).c)
-			move = ft_ab_rrarrb(stack_a, stack_b, stack_a->nb);
-		if (move.c > ft_ab_rarrb(stack_a, stack_b, stack_a->nb).c)
-			move = ft_ab_rarrb(stack_a, stack_b, stack_a->nb);
-		if (move.c > ft_ab_rrarb(stack_a, stack_b, stack_a->nb).c)
-			move = ft_ab_rrarb(stack_a, stack_b, stack_a->nb);
+		if (move.c > ft_ab_rarb(stack_a, stack_b, tmp->nb).c)
+			move = ft_ab_rarb(stack_a, stack_b, tmp->nb);
+		if (move.c > ft_ab_rrarrb(stack_a, stack_b, tmp->nb).c)
+			move = ft_ab_rrarrb(stack_a, stack_b, tmp->nb);
+		if (move.c > ft_ab_rarrb(stack_a, stack_b, tmp->nb).c)
+			move = ft_ab_rarrb(stack_a, stack_b, tmp->nb);
+		if (move.c > ft_ab_rrarb(stack_a, stack_b, tmp->nb).c)
+			move = ft_ab_rrarb(stack_a, stack_b, tmp->nb);
 		tmp = tmp->next;
 	}
 	return (move);
