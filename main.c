@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:17:20 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 13:00:57 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:16:45 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 */
 int	main(int argc, char *argv[])
 {
-	atexit(ft_leaks);
 	if (argc < 2)
 		exit(EXIT_FAILURE);
 	ft_chk_args(argc, argv);

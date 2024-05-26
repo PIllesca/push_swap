@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:24:56 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/09 18:53:03 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/27 00:55:49 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	ft_rotate_sort(t_stack **s_a)
 	{
 		min = ft_find_index(*s_a, ft_find_min(*s_a));
 		max = ft_find_index(*s_a, ft_find_max(*s_a));
-		if (max < min)
+		if (max > min)
 			while (max--)
 				ft_rra(s_a);
 		else
@@ -123,10 +123,8 @@ void	ft_push_swap(int argc, char *argv[])
 
 	stack_a = ft_init_stack(argc, argv);
 	stack_b = NULL;
-	ft_print_stacks(stack_a, stack_b);
 	if (!ft_chk_sorted(stack_a))
 		ft_sort_stack(&stack_a, &stack_b);
-	ft_print_stacks(stack_a, stack_b);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 }
