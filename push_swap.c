@@ -6,7 +6,7 @@
 /*   By: pillesca <pillesca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:24:56 by pillesca          #+#    #+#             */
-/*   Updated: 2024/05/27 00:55:49 by pillesca         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:58:18 by pillesca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_pop_sort(t_stack **s_a, t_stack **s_b)
 {
 	t_move	move;
 
-	while (ft_stack_size(*s_b) > 0)
+	while ((*s_b))
 	{
 		move = ft_best_ba_rotation(*s_a, *s_b);
 		if (move.rotation == rarb)
@@ -40,7 +40,7 @@ static void	ft_pop_sort(t_stack **s_a, t_stack **s_b)
  * @param[in] s_a Reference to stack a
  * @param[in] s_b Reference to stack b
 */
-static void ft_push_sort(t_stack **s_a, t_stack **s_b)
+static void	ft_push_sort(t_stack **s_a, t_stack **s_b)
 {
 	t_move	move;
 
@@ -67,18 +67,18 @@ static void ft_push_sort(t_stack **s_a, t_stack **s_b)
 static void	ft_rotate_sort(t_stack **s_a)
 {
 	int	min;
-	int	max;	
+	int	index;
 
 	if (!ft_chk_sorted(*s_a))
 	{
-		min = ft_find_index(*s_a, ft_find_min(*s_a));
-		max = ft_find_index(*s_a, ft_find_max(*s_a));
-		if (max > min)
-			while (max--)
-				ft_rra(s_a);
-		else
-			while (min--)
+		min = ft_find_min(*s_a);
+		index = ft_find_index(*s_a, min);
+		if (index < ft_stack_size(*s_a) - index)
+			while ((*s_a)->nb != min)
 				ft_ra(s_a);
+		else
+			while ((*s_a)->nb != min)
+				ft_rra(s_a);
 	}
 }
 
